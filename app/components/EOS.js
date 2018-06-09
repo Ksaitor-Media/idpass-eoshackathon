@@ -11,13 +11,13 @@ let wif = '5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'
 let eos = EOS({keyProvider: wif})
 
 
-async function provisionDidDocumentOnEOS(){
+async function provisionDidDocumentOnEOS () {
   let {publicDidDocument, privateDidDocument} = await generateDid()
   pushDidDocumentToEOS(publicDidDocument)
   return {publicDidDocument, privateDidDocument}
 }
 
-async function pushDidDocumentToEOS(publicDidDocument) {
+async function pushDidDocumentToEOS (publicDidDocument) {
   await eos.newaccount({
     creator: 'eosio',
     name: publicDidDocument.id.substr(8),
@@ -102,14 +102,14 @@ function deepClone (value) {
 };
 
 
-async function generateEOSKeyPair() {
+async function generateEOSKeyPair () {
   let privateKey = await ecc.randomKey()
   let publicKey = ecc.privateToPublic(privateKey)
   return {privateKey, publicKey}
 }
 
 
-function addEncodedSecp256k1PublicKey(publicKeyNode, publicKey) {
+function addEncodedSecp256k1PublicKey (publicKeyNode, publicKey) {
   publicKeyNode.publicKeyBase58 = publicKey
   return publicKeyNode
 }
