@@ -13,6 +13,7 @@
     "parcel-bundler": "^1.8.1"
   },
   "dependencies": {
+    "eosjs": "^14.1.1",
     "history": "^4.7.2",
     "mobx": "^4.3.1",
     "mobx-react": "^5.2.2",

@@ -6,6 +6,7 @@ import { Container, Header, Divider } from 'semantic-ui-react'
 import { Input, Form, Button, Dropdown } from 'semantic-ui-react'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
+import EOS from '../components/EOS'
 
 const genders = [{
   text: 'Male',
