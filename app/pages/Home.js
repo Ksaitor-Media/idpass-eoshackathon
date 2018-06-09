@@ -1,15 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Input, Button, Container, Grid } from 'semantic-ui-react'
+import { Input, Form, Button, Container, Header } from 'semantic-ui-react'
 
 class Home extends React.Component {
   render() {
-    return (<Container>
-        <h1>ID PASS!</h1>
-        <Input label='Name' />
-        <br/>
-        <br/>
-        <Button primary content='done' />
+    return (
+      <Container>
+        <Header as='h1' content='ID PASS' />
+        <Form>
+          <Form.Group>
+            <Form.Input label='Name' />
+          </Form.Group>
+        </Form>
+        <Button color='green' content='Save' />
       </Container>
     )
   }
