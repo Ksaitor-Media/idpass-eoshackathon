@@ -10,6 +10,10 @@ import EOS from '../components/EOS'
 import QRCode from 'qrcode.react'
 import pako from 'pako'
 
+import jsonld from 'jsonld'
+import jsig from 'jsonld-signatures'
+jsig.use('jsonld', jsonld)
+
 const genders = [{
   text: 'Male',
   value: 'male'
