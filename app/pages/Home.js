@@ -29,9 +29,10 @@ class Home extends React.Component {
           </Form.Group>
           <Form.Group>
             <Form.Input label='Date of Birth' />
+            <Form.Input label='Age' />
           </Form.Group>
         </Form>
-        <Button color='green' content='Print' />
+        <Button color='green' content='Issue' />
       </Container>
     )
   }
