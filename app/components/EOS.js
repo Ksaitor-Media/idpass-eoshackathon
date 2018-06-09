@@ -17,8 +17,6 @@ async function provisionDidDocumentOnEOS(){
   return {publicDidDocument, privateDidDocument}
 }
 
-window.provisionDidDocumentOnEOS = provisionDidDocumentOnEOS
-
 async function pushDidDocumentToEOS(publicDidDocument) {
   await eos.newaccount({
     creator: 'eosio',
