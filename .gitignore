@@ -1,0 +1,7 @@
+.cache
+node_modules
+dist
+*.sublime-workspace
+yarn.lock
+report.html
+package-lock.json
