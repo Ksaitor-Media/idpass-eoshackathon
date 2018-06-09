@@ -1,24 +1,31 @@
 import EOS from 'eosjs'
 import ecc from 'eosjs-ecc'
 
+import randomstring from 'randomstring'
+
 const DID_CONTEXT = 'https://w3id.org/did/v1'
 
-async function generateEOSKeyPair() {
-  let privateKey = await ecc.randomKey()
-  let publicKey = ecc.privateToPublic(privateKey)
-  return {privateKey, publicKey}
+
+let wif = '5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'
+
+let eos = EOS({keyProvider: wif})
+
+
+async function provisionDidDocumentOnEOS(){
+  let {publicDidDocument, privateDidDocument} = await generateDid()
+  pushDidDocumentToEOS(publicDidDocument)
+  return {publicDidDocument, privateDidDocument}
 }
 
+window.provisionDidDocumentOnEOS = provisionDidDocumentOnEOS
 
-function addEncodedSecp256k1PublicKey(publicKeyNode, publicKey) {
-  publicKeyNode.publicKeyBase58 = publicKey
-  return publicKeyNode
-}
-
-
-function addSecp256k1PrivateKey (privateKeyNode, privateKey) {
-  privateKeyNode.privateKeyBase58 = privateKey
-  return privateKeyNode
+async function pushDidDocumentToEOS(publicDidDocument) {
+  await eos.newaccount({
+    creator: 'eosio',
+    name: publicDidDocument.id.substr(8),
+    owner: publicDidDocument.authentication[0].publicKey[0].publicKeyBase58,
+    active: publicDidDocument.authentication[0].publicKey[0].publicKeyBase58,
+  })
 }
 
 async function generateDid () {
@@ -26,7 +33,10 @@ async function generateDid () {
     '@context': DID_CONTEXT
   }
 
-  let did = "did:eos:" + Math.random().toString(36).substr(2, 15)
+  let did = "did:eos:" + randomstring.generate({
+    length: 12,
+    charset: 'qwertyuiopasdfghjklzxcvbnm'
+  });
 
   // application suite parameters
   const appSuites = {
@@ -67,8 +77,6 @@ async function generateDid () {
 }
 
 
-window.generateDid = generateDid
-
 /**
  * Clones a value. If the value is an array or an object it will be deep cloned.
  *
@@ -96,14 +104,20 @@ function deepClone (value) {
 };
 
 
+async function generateEOSKeyPair() {
+  let privateKey = await ecc.randomKey()
+  let publicKey = ecc.privateToPublic(privateKey)
+  return {privateKey, publicKey}
+}
 
 
-let wif = '5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'
-let pubkey = 'EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV'
+function addEncodedSecp256k1PublicKey(publicKeyNode, publicKey) {
+  publicKeyNode.publicKeyBase58 = publicKey
+  return publicKeyNode
+}
 
-let eos = EOS({keyProvider: wif})
 
-// console.log(eos)
-// console.log(eos.getAccount())
-
-window.eos = eos;
+function addSecp256k1PrivateKey (privateKeyNode, privateKey) {
+  privateKeyNode.privateKeyBase58 = privateKey
+  return privateKeyNode
+}
