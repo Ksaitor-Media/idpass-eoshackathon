@@ -10,15 +10,19 @@
   "author": "Raman Shalupau <raman@ksaitor.com>",
   "license": "ISC",
   "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-runtime": "^6.26.0",
     "parcel-bundler": "^1.8.1"
   },
   "dependencies": {
     "eosjs": "^14.1.1",
+    "eosjs-ecc": "^4.0.1",
     "history": "^4.7.2",
     "mobx": "^4.3.1",
     "mobx-react": "^5.2.2",
     "mobx-react-router": "^4.0.4",
     "moment": "^2.22.2",
+    "pako": "^1.0.6",
     "qrcode.react": "^0.8.0",
     "react": "^16.4.0",
     "react-datepicker": "^1.5.0",
