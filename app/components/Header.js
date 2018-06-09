@@ -9,6 +9,7 @@ class Header extends React.Component {
         <Button.Group basic>
           <Button as={Link} to='/' content='Scanner' />
           <Button as={Link} to='/reader' content='Reader' />
+          <Button as={Link} to='/ids' content='IDs' />
         </Button.Group>
       </Container>
     )

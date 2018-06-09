@@ -119,3 +119,7 @@ function addSecp256k1PrivateKey (privateKeyNode, privateKey) {
   privateKeyNode.privateKeyBase58 = privateKey
   return privateKeyNode
 }
+
+export default {
+  provisionDidDocumentOnEOS
+}

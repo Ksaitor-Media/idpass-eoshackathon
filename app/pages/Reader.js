@@ -24,14 +24,13 @@ class Reader extends React.Component {
   }
 
   scanner (el) {
-    console.log(el.target.value)
     this.setState({qr: el.target.value})
     // this.setState(JSON.parse(decodeData(el.taarget.value)))
   }
 
 
   render() {
-    const { qr, } = this.state
+    const { qr } = this.state
     return (
       <Container {...{style: {marginTop: '5em'}}}>
         <input ref='scanner'

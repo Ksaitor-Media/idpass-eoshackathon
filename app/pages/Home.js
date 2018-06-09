@@ -56,9 +56,10 @@ class Home extends React.Component {
       qr: 'nice'
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
-    console.log(stringData.length)
+    this.handleNameChange =
+    this.handleNameChange.bind(this);
     console.log(pako.deflate(stringData, {to: 'string'}).length)
+    // EOS.provisionDidDocumentOnEOS().then(console.log)
   }
 
   handleChange (date) {
@@ -67,6 +68,18 @@ class Home extends React.Component {
 
   handleNameChange (name) {
     this.setState({qr: name.target.value})
+  }
+
+  encodeForQR (stringData) {
+    return btoa(pako.deflate(stringData, {to: 'string'}))
+  }
+
+  decodeFromQR (data) {
+    return JSON.parse(pako.enflate(atob(data), {to: 'string'}))
+  }
+
+  log () {
+
   }
 
   render() {
@@ -89,11 +102,10 @@ class Home extends React.Component {
             <Form.Input label='Age' />
           </Form.Group>
           <QRCode value={stringData} size={256} />
-          <br/>
-          <br/>
-          <QRCode value={pako.deflate(stringData, {to: 'string'})} level='L' size={256} />
+          —
+          <QRCode value={btoa(pako.deflate(stringData, {to: 'string'}))} size={256} />
         </Form>
-        <Button color='green' content='Issue' />
+        <Button color='green' content='Issue' onClick={this.log.bind(this)} />
       </Container>
     )
   }

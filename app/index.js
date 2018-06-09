@@ -14,6 +14,7 @@ const history = syncHistory(createBrowserHistory(), routingStore)
 import Header from './components/Header'
 import Home from './pages/Home'
 import Reader from './pages/Reader'
+import Ids from './pages/Ids'
 
 ReactDOM.render((
   <Router key={Math.random()} history={history}>
@@ -21,6 +22,7 @@ ReactDOM.render((
       <Header />
       <Route exact path='/' component={Home} />
       <Route exact path='/reader' component={Reader} />
+      <Route exact path='/ids' component={Ids} />
     </div>
   </Router>
 ), document.getElementById('app'))
