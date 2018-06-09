@@ -11,12 +11,16 @@ import { RouterStore, syncHistoryWithStore as syncHistory} from 'mobx-react-rout
 let routingStore = new RouterStore()
 const history = syncHistory(createBrowserHistory(), routingStore)
 
+import Header from './components/Header'
 import Home from './pages/Home'
+import Reader from './pages/Reader'
 
 ReactDOM.render((
   <Router key={Math.random()} history={history}>
     <div>
+      <Header />
       <Route exact path='/' component={Home} />
+      <Route exact path='/reader' component={Reader} />
     </div>
   </Router>
 ), document.getElementById('app'))
