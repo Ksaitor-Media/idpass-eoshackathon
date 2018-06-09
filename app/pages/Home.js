@@ -9,10 +9,7 @@ import moment from 'moment'
 import EOS from '../components/EOS'
 import QRCode from 'qrcode.react'
 import pako from 'pako'
-
-import jsonld from 'jsonld'
-import jsig from 'jsonld-signatures'
-jsig.use('jsonld', jsonld)
+import Axios from 'axios'
 
 const genders = [{
   text: 'Male',
