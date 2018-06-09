@@ -20,8 +20,16 @@ const genders = [{
 }]
 
 class Home extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      date: moment()
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
   handleChange (date) {
-    console.log(date)
+    this.setState({date})
   }
 
   render() {
@@ -39,7 +47,7 @@ class Home extends React.Component {
           <Form.Group>
             <div className='field'>
               <label>Date of Birth</label>
-              <DatePicker onChange={this.handleChange.bind(this)} />
+              <DatePicker selected={this.state.date} onChange={this.handleChange} />
             </div>
             <Form.Input label='Age' />
           </Form.Group>
