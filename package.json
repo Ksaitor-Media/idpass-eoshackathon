@@ -15,8 +15,10 @@
     "parcel-bundler": "^1.8.1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "eosjs": "^14.1.1",
     "eosjs-ecc": "^4.0.1",
+    "express": "^4.16.3",
     "history": "^4.7.2",
     "jsonld": "^1.0.2",
     "jsonld-signatures": "^2.3.0",
