@@ -35,6 +35,7 @@ class Ids {
       dateOfBirth: moment().subtract(22, 'years')
     }
     this.signedJSONLD = null
+    this.iris = null
   }
 
   @action sign = () => {

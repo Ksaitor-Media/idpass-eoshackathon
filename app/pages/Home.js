@@ -86,7 +86,7 @@ class Home extends React.Component {
               </Form>
             </Grid.Column>
             <Grid.Column>
-              <Image rounded src={iris ? iris.image : 'https://react.semantic-ui.com/assets/images/wireframe/square-image.png'} />
+              {(iris && iris.image) ? <Image rounded src={iris ? iris.image : 'https://react.semantic-ui.com/assets/images/wireframe/square-image.png'} /> : null}
               <br />
               <Button content='👁️ Get IRIS' onClick={captireIris} loading={irisLoading} />
             </Grid.Column>
