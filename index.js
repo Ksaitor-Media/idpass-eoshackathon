@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 const _ = require('lodash')
+const cors = require('cors')
+const bodyParser = require('body-parser')
 
 const jsonld = require('jsonld')
 const jsig = require('jsonld-signatures')
@@ -21,9 +23,12 @@ let baseInput = {
   'birthDate': 'NAME'
 }
 
-app.get('/sign', (req, res) => {
-  console.log(req.query)
-  let input = _.defaults(req.query, baseInput)
+app.use(cors())
+app.use(bodyParser.json())
+app.all('/sign', (req, res) => {
+  console.log(req.body)
+  let input = _.defaults(req.body, baseInput)
+  console.log(input)
   jsig.sign(input, {
     algorithm: 'EcdsaKoblitzSignature2016',
     privateKeyWif: privateKeyWif,
@@ -38,7 +43,7 @@ app.get('/sign', (req, res) => {
   });
 })
 
-app.get('/verify', (req, res) => {
+app.all('/verify', (req, res) => {
   console.log(req.query)
   jsig.verify(signedDocument, {
     algorithm: 'EcdsaKoblitzSignature2016',

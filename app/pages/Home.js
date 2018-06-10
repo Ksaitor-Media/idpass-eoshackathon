@@ -54,59 +54,55 @@ class Home extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      date: moment(),
+      date: moment().subtract(22, 'years'),
       qr: 'nice'
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleNameChange =
-    this.handleNameChange.bind(this);
-    console.log(pako.deflate(stringData, {to: 'string'}).length)
+    this.handleDOBChange = this.handleDOBChange.bind(this);
   }
 
-  handleChange (date) {
+  handleDOBChange (date) {
+    const { handleChange } = this.props.IdsStore
     this.setState({date})
+    handleChange(null, {name:'dateOfBirth', value: date.format('MM/DD/YYYY')})
   }
 
-  handleNameChange (name) {
-    this.setState({qr: name.target.value})
-  }
-
-  encodeForQR (stringData) {
-    return btoa(pako.deflate(stringData, {to: 'string'}))
+  encodeForQR (object) {
+    return btoa(pako.deflate(JSON.stringify(object), {to: 'string'}))
   }
 
   decodeFromQR (data) {
     return JSON.parse(pako.enflate(atob(data), {to: 'string'}))
   }
 
-  log () {
-
-  }
-
   render() {
+    const { loading, handleChange, sign, signedJSONLD } = this.props.IdsStore;
+    let qr = false
+    if (signedJSONLD) {
+      console.log('signedJSONLD', signedJSONLD)
+      qr = this.encodeForQR(signedJSONLD)
+    }
+
     return (
       <Container {...{style: {marginTop: '5em'}}}>
         <Header as='h1' content='🔑 Identity Generator' />
         <Form>
           <Form.Group>
-            <Form.Input label='Full Legal Name' onChange={this.handleNameChange} />
-            <Form.Input label='Short Name' />
+            <Form.Input label='Full Legal Name' name='legalName' onChange={handleChange}/>
+            <Form.Input label='Short Name' name='shortName' onChange={handleChange}/>
           </Form.Group>
           <Form.Group>
-            <Form.Dropdown label='Gender' selection options={genders} />
+            <Form.Dropdown label='Gender' selection options={genders} name='gender' onChange={handleChange} />
           </Form.Group>
           <Form.Group>
             <div className='field'>
               <label>Date of Birth</label>
-              <DatePicker selected={this.state.date} onChange={this.handleChange} />
+              <DatePicker selected={this.state.date} name='dateOfBirth' onChange={this.handleDOBChange} />
             </div>
-            <Form.Input label='Age' />
+            <Form.Input label='Age' name='age' onChange={handleChange}/>
           </Form.Group>
-          <QRCode value={stringData} size={256} />
-          —
-          <QRCode value={btoa(pako.deflate(stringData, {to: 'string'}))} size={256} />
+          {<QRCode value={qr} size={256} /> && !!qr}
         </Form>
-        <Button color='green' content='Issue' onClick={this.log.bind(this)} />
+        <Button color='green' content='Issue' onClick={sign} loading={loading} />
       </Container>
     )
   }
