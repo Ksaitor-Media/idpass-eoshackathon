@@ -61,7 +61,7 @@ class Home extends React.Component {
         <Header as='h1' content='🔑 Identity Generator' />
         <Form>
           <Form.Group>
-            <Form.Input label='Full Legal Name' name='legalName' onChange={handleChange}/>
+            <Form.Input label='Full Legal Name' name='legalName' onChange={handleChange} value={person.legalName} />
             <Form.Input label='Short Name' name='shortName' onChange={handleChange}/>
           </Form.Group>
           <Form.Group>
@@ -72,7 +72,7 @@ class Home extends React.Component {
               <label>Date of Birth</label>
               <DatePicker selected={this.state.date} name='dateOfBirth' onChange={this.handleDOBChange} />
             </div>
-            <Form.Input label='Age' name='age' onChange={handleChange}/>
+            {/*<Form.Input label='Age' name='age' onChange={handleChange}/>*/}
           </Form.Group>
         </Form>
         <Button color='green' content='Issue' onClick={sign} loading={loading} />

@@ -7,6 +7,7 @@ import moment from 'moment'
 class Ids {
   @observable loading = false
   @observable person = {
+    legalName: '',
     dateOfBirth: moment().subtract(22, 'years')
   }
   @observable ids = []
@@ -28,6 +29,7 @@ class Ids {
 
   @action newIdentity = () => {
     this.person = {
+      legalName: '',
       dateOfBirth: moment().subtract(22, 'years')
     }
     this.signedJSONLD = null
