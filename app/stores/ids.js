@@ -4,6 +4,9 @@ import EOS from '../components/EOS'
 import pako from 'pako'
 import moment from 'moment'
 
+const pyIp = 'http://0.0.0.0:10888/'
+// const pyIp = 'http://10.101.2.125:10888/'
+
 class Ids {
   @observable loading = false
   @observable irisLoading = false
@@ -60,9 +63,8 @@ class Ids {
   @action captireIris = () => {
     console.log('captireIris')
     const that = this
-    const iris = 'http://10.101.2.125:10888/capture_iris'
     that.irisLoading = true
-    get(iris).then(res => {
+    get(`${pyIp}capture_iris`).then(res => {
       console.log(res.data)
       that.iris = res.data
       that.irisLoading = false
@@ -72,12 +74,11 @@ class Ids {
   @action hardwareIDPASS = () => {
     const that = this
     let data = this.person
-    this.loading = true
-    that.signedJSONLD = null
     const did = this.ids.pop()
     data.id = did.publicDidDocument.id
 
     post('http://10.101.2.125:10888/create_idpass', data)
+    // get('http://10.101.2.125:10888/create_idpass', {params: data})
     .then(res => {
       console.log(res.data)
     })

@@ -73,7 +73,7 @@ class Home extends React.Component {
               <Form>
                 <Form.Group>
                   <Form.Input label='Full Legal Name' name='legalName' onChange={handleChange} value={person.legalName} />
-                  <Form.Input label='Short Name' name='shortName' onChange={handleChange}/>
+                  <Form.Input label='Short Name' name='shortName' onChange={handleChange} value={person.shortName}/>
                 </Form.Group>
                 <Form.Group>
                   <Form.Dropdown label='Gender' selection options={genders} name='gender' onChange={handleChange} />

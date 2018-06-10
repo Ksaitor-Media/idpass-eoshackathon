@@ -5,3 +5,4 @@ dist
 yarn.lock
 report.html
 package-lock.json
+python_env
