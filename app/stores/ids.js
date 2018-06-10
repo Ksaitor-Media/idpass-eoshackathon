@@ -30,13 +30,17 @@ class Ids {
     this.person = {
       dateOfBirth: moment().subtract(22, 'years')
     }
+    this.signedJSONLD = null
   }
 
   @action sign = () => {
     const that = this
-    const data = this.person
+    let data = this.person
     this.loading = true
     that.signedJSONLD = null
+    const did = this.ids.pop()
+    data.id = did.publicDidDocument.id
+
     post('http://localhost:3000/sign', data)
     .then(res => {
       console.log(res.data)

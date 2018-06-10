@@ -11,6 +11,8 @@ jsig.use('jsonld', jsonld)
 const privateKeyWif = '5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'
 const publicKey = 'EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV'
 
+const iris = 'http://10.101.2.125:10888/iris'
+
 let baseInput = {
   '@context': [
     'https://w3id.org/identity/v1',

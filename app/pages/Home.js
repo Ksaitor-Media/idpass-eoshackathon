@@ -74,10 +74,12 @@ class Home extends React.Component {
             </div>
             <Form.Input label='Age' name='age' onChange={handleChange}/>
           </Form.Group>
-          {qr ?  <QRCode value={qr} size={256} /> : null}
         </Form>
         <Button color='green' content='Issue' onClick={sign} loading={loading} />
         <Button link content='New Id' onClick={newIdentity} />
+        <br />
+        <br />
+        {qr ?  <QRCode value={qr} size={256} /> : null}
       </Container>
     )
   }
