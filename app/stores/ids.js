@@ -74,7 +74,7 @@ class Ids {
   @action hardwareIDPASS = () => {
     const that = this
     const data = this.signedJSONLD
-    post('http://10.101.2.125:10888/create_idpass', data)
+    post(`${pyIp}create_idpass`, data)
     .then(res => {
       console.log(res.data)
     })
