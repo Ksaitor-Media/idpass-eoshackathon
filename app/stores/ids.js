@@ -51,6 +51,19 @@ class Ids {
     })
 
   }
+
+
+  @action verify = (data) => {
+    const that = this
+    this.loading = true
+    post('http://localhost:3000/verify', data)
+    .then(res => {
+      console.log(res)
+      that.valid = res
+      that.loading = false
+    })
+
+  }
 }
 
 export default new Ids()

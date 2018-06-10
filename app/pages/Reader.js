@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
+import { observer, inject } from 'mobx-react'
 import { Container, Header, Divider } from 'semantic-ui-react'
 import { Input, Form, Button, Dropdown } from 'semantic-ui-react'
 import moment from 'moment'
@@ -12,11 +14,13 @@ const decodeData = (binaryString) => {
   return JSON.parse(pako.inflate(binaryString, { to: 'string' }));
 }
 
+@inject('IdsStore')
+@observer
 class Reader extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      qr: ''
+      qr: 'plop'
     };
   }
   componentDidMount () {
@@ -24,8 +28,12 @@ class Reader extends React.Component {
   }
 
   scanner (el) {
+    const { verify } = this.props.IdsStore
+    verify({signedDocument: el.target.value})
+
     this.setState({qr: el.target.value})
-    // this.setState(JSON.parse(decodeData(el.taarget.value)))
+
+    // this.setState(JSON.parse(decodeData(el.target.value)))
   }
 
 
