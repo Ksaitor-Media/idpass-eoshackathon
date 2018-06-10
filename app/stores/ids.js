@@ -9,6 +9,7 @@ class Ids {
   @observable irisLoading = false
   @observable person = {
     legalName: '',
+    shortName: '',
     dateOfBirth: moment().subtract(22, 'years')
   }
   @observable ids = []
@@ -32,10 +33,12 @@ class Ids {
   @action newIdentity = () => {
     this.person = {
       legalName: '',
+      shortName: '',
       dateOfBirth: moment().subtract(22, 'years')
     }
     this.signedJSONLD = null
     this.iris = null
+    this.loading = false
   }
 
   @action sign = () => {
@@ -52,7 +55,6 @@ class Ids {
       that.signedJSONLD = res.data
       that.loading = false
     })
-
   }
 
   @action captireIris = () => {
@@ -64,6 +66,20 @@ class Ids {
       console.log(res.data)
       that.iris = res.data
       that.irisLoading = false
+    })
+  }
+
+  @action hardwareIDPASS = () => {
+    const that = this
+    let data = this.person
+    this.loading = true
+    that.signedJSONLD = null
+    const did = this.ids.pop()
+    data.id = did.publicDidDocument.id
+
+    post('http://10.101.2.125:10888/create_idpass', data)
+    .then(res => {
+      console.log(res.data)
     })
   }
 

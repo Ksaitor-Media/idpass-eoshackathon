@@ -52,6 +52,7 @@ class Home extends React.Component {
   render() {
     const { person, loading, handleChange, sign, signedJSONLD, newIdentity } = this.props.IdsStore;
     const { iris, captireIris, irisLoading } = this.props.IdsStore;
+    const { hardwareIDPASS } = this.props.IdsStore;
     let qr = false
     if (signedJSONLD) {
       console.log('signedJSONLD', signedJSONLD)
@@ -94,7 +95,7 @@ class Home extends React.Component {
           </Grid.Row>
         </Grid>
         <Button color='green' content='Create temporary IDPASS' onClick={sign} loading={loading} />
-        <Button color='green' content='Create hardware IDPASS' onClick={sign} />
+        <Button color='green' content='Create hardware IDPASS' onClick={hardwareIDPASS} />
         <br />
         <br />
         {qr ?  <QRCode value={qr} size={256} /> : null}
