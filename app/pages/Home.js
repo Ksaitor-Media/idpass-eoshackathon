@@ -98,6 +98,7 @@ class Home extends React.Component {
         {qr ?  <Button color='green' content='Create hardware IDPASS' onClick={hardwareIDPASS} /> : null}
         <br />
         <br />
+        {qr ?  <Header as='h2' content='Print this IDPASS 👇' /> : null}
         {qr ?  <QRCode value={qr} size={256} /> : null}
         <p>{qr ?  signedJSONLD.id : null}</p>
       </Container>
