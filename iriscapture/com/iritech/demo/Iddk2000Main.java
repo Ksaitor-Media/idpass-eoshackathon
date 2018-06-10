@@ -22,6 +22,17 @@ public class Iddk2000Main {
 	public static void main(String[] args) {
 		Iddk2000Features.g_binDir = System.getProperty("user.dir");
 		print_menu();
+
+        // // check if length of args array is
+        // // greater than 0
+        // if (args.length > 0)
+        // {
+		// 	print_menu();
+		// 	System.out.println(args[0]);
+        // }
+        // else {
+        //     System.out.println("No command line arguments found.");
+		// }
 	}
 
 	static void iritech_guide(String message)
@@ -55,7 +66,7 @@ public class Iddk2000Main {
 		features.get_result_template(0);
 
 		// features.iris_recognition();
-		features.my_compare_templates("./ResultTemplate_b.tpl");
+		// features.my_compare_templates("./ResultTemplate_b.tpl");
 
 		// while(false)
 		// {

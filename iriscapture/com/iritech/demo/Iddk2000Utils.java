@@ -281,51 +281,21 @@ public class Iddk2000Utils {
 
     public static void save_result_image(IddkImage image, IddkEyeSubtype eyeSubtype)
     {
-        String fileName = "";
-        String eyeLabel = "";
-        switch (eyeSubtype.getValue())
-        {
-        case IddkEyeSubtype.IDDK_UNKNOWN_EYE:
-        	eyeLabel = "Unknown";
-        	break;
-        case IddkEyeSubtype.IDDK_LEFT_EYE:
-        	eyeLabel = "Left";
-        	break;
-        case IddkEyeSubtype.IDDK_RIGHT_EYE:
-        	eyeLabel = "Right";
-        	break;
-        case IddkEyeSubtype.IDDK_BOTH_EYE:
-        	eyeLabel = "Both";
-        	break;
-        }
-        String time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+        // String fileName = "iris.jp2";
+		// fileName = System.getProperty("resultDir") + ;
 
-        if (image.getImageFormat().getValue() == IddkImageFormat.IDDK_IFORMAT_MONO_JPEG2000)
-        {
-            fileName = eyeLabel + "EyeImage_" + time + ".jp2";
-        }
-        else if (image.getImageFormat().getValue() == IddkImageFormat.IDDK_IFORMAT_MONO_RAW)
-        {
-            fileName = eyeLabel + "EyeImage_" + image.getImageWidth() + "x" + image.getImageHeight() + "_" + time + ".raw";
-        }
-        else if (image.getImageFormat().getValue() == IddkImageFormat.IDDK_IFORMAT_IRITECH_RAW)
-        {
-            fileName = eyeLabel + "EyeImage_" + time + "_raw.iri";
-        }
-        else if (image.getImageFormat().getValue() == IddkImageFormat.IDDK_IFORMAT_IRITECH_JPEG2000)
-        {
-            fileName = eyeLabel + "EyeImage_" + time + "_jp2.iri";
-        }
-
-        String eyeFilePath = System.getProperty("user.dir") + "\\" + fileName;
+		// Original
+        // String eyeFilePath = System.getProperty("user.dir") + "\\" + fileName;
+		// Mine
+        String eyeFilePath = System.getProperty("resultDir") + "/" + "iris.jp2";
 
         if (Iddk2000Utils.save_file(eyeFilePath, image.getImageData()))
         {
-        	System.out.print("\n\tSaved ./"+ fileName +"\n");
+        	System.out.print("\n\tSaved "+ eyeFilePath +"\n");
         }
         else
         {
-        	System.out.print("\n\tSaving ./"+ fileName +" failed.\n");
+        	System.out.print("\n\tSaving "+ eyeFilePath +" failed.\n");
         }
     }
 

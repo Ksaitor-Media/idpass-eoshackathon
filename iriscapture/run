@@ -6,4 +6,4 @@ cd $BIN_DIR
 VERSION="3.3.0"
 CLASSPATH=.:$BIN_DIR/../sdk/Iddk2000-$VERSION.jar
 export LD_LIBRARY_PATH=$BIN_DIR/../sdk:$LD_LIBRARY_PATH
-java -cp $CLASSPATH com.iritech.demo.Iddk2000Main
+java -DresultDir=$@ -cp $CLASSPATH com.iritech.demo.Iddk2000Main

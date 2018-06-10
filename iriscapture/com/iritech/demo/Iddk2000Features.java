@@ -1497,14 +1497,15 @@ public class Iddk2000Features {
 				if(iRet.getValue() == IddkResult.IDDK_OK)
 				{
 					System.out.print("done.\n");
-					resultTemplateFile = g_binDir + "/ResultTemplate_"+times+".tpl";
+					// resultTemplateFile = g_binDir + "/template.tpl";
+			        resultTemplateFile = System.getProperty("resultDir") + "/" + "template.tpl";
 					if(Iddk2000Utils.save_file(resultTemplateFile, pTemplate.getData()))
 					{
-						System.out.print("\n\tSaved ./ResultTemplate_"+times+".tpl.\n");
+						System.out.print("\n\tSaved "+resultTemplateFile+".\n");
 					}
 					else
 					{
-						System.out.print("\n\tSaving ./ResultTemplate_"+times+".tpl failed.\n");
+						System.out.print("\n\tSaving "+resultTemplateFile+" failed.\n");
 					}
 				}
 				else
