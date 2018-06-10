@@ -1,0 +1,12 @@
+@page { size: 62mm 100mm }
+@media print {
+  .ui > * {
+    display: none!important;
+  }
+  .ui canvas {
+    display: block!important;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}

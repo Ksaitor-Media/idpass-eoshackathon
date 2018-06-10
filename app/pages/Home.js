@@ -1,4 +1,5 @@
 import 'react-datepicker/dist/react-datepicker.css'
+import './qrprint.css'
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
@@ -93,7 +94,7 @@ class Home extends React.Component {
           </Grid.Row>
         </Grid>
         <Button color='green' content='Create temporary IDPASS' onClick={sign} loading={loading} />
-        <Button color='green' content='Create hardware IDPASS' onClick={sign} loading={loading} />
+        <Button color='green' content='Create hardware IDPASS' onClick={sign} />
         <br />
         <br />
         {qr ?  <QRCode value={qr} size={256} /> : null}

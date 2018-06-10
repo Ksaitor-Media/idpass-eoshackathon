@@ -58,27 +58,20 @@ class Reader extends React.Component {
         <Header as='h1' content='🔍 Reader' />
         {person.legalName ? null : <div><Loader active inline/> {length}...</div>}
         {person.legalName ? <Card>
-          <Image src='/assets/images/avatar/large/matthew.png' />
+          <Image src='https://react.semantic-ui.com/assets/images/avatar/large/matthew.png' />
           <Card.Content>
-            <Card.Header>Matthew</Card.Header>
+            <Card.Header>{person.legalName}</Card.Header>
             <Card.Meta>
-              <span className='date'>Joined in 2015</span>
+              <span className='date'>{person.dateOfBirth ? moment(person.dateOfBirth).format('DD/MM/YYYY') : null}</span>
             </Card.Meta>
-            <Card.Description>Matthew is a musician living in Nashville.</Card.Description>
+            <Card.Description>{person.gender}</Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <a>
-              <Icon name='user' />
-              22 Friends
-            </a>
+            <Icon name='user' /> {person.id}
           </Card.Content>
         </Card> : null}
 
-        <p>{person.legalName}</p>
         <p>{person.shortName}</p>
-        <p>{person.gender}</p>
-        <p>{person.id}</p>
-        <p>{person.dateOfBirth ? moment(person.dateOfBirth).format('DD/MM/YYYY') : null}</p>
 
         {/*<QRCode value={qr} size={256} />*/}
         <input ref='scanner'
