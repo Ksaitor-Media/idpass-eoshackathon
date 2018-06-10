@@ -27,6 +27,7 @@ app.use(cors())
 app.use(bodyParser.json())
 
 app.all('/sign', (req, res) => {
+  console.log(1, 'data received', req.body)
   let input = _.defaults(req.body, baseInput)
   jsig.sign(input, {
     algorithm: 'EcdsaKoblitzSignature2016',
@@ -34,10 +35,10 @@ app.all('/sign', (req, res) => {
     creator: 'https://example.com/i/alice/keys/1'
   }, (err, signedDocument) => {
     if (err) {
-      console.log('Signing error:', err);
+      console.log(2, 'Signing error:', err);
       return res.send(500);
     }
-    console.log('Signed document:', signedDocument)
+    console.log(2, 'Signed document:', signedDocument)
     return res.send(signedDocument);
   });
 })

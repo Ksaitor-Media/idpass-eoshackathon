@@ -63,6 +63,7 @@ class Reader extends React.Component {
             <Card.Header>{person.legalName}</Card.Header>
             <Card.Meta>
               <span className='date'>{person.dateOfBirth ? moment(person.dateOfBirth).format('DD/MM/YYYY') : null}</span>
+              <p>{person.shortName}</p>
             </Card.Meta>
             <Card.Description>{person.gender}</Card.Description>
           </Card.Content>
@@ -70,8 +71,6 @@ class Reader extends React.Component {
             <Icon name='user' /> {person.id}
           </Card.Content>
         </Card> : null}
-
-        <p>{person.shortName}</p>
 
         {/*<QRCode value={qr} size={256} />*/}
         <input ref='scanner'
