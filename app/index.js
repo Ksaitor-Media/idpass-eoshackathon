@@ -23,9 +23,9 @@ ReactDOM.render((
     <Router key={Math.random()} history={history}>
       <div>
         <Header />
-        <Route exact path='/' component={Home} />
+        <Route exact path='/' component={Ids} />
+        <Route exact path='/register' component={Home} />
         <Route exact path='/reader' component={Reader} />
-        <Route exact path='/ids' component={Ids} />
       </div>
     </Router>
   </Provider>

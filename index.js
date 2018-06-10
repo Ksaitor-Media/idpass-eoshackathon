@@ -11,24 +11,25 @@ jsig.use('jsonld', jsonld)
 const privateKeyWif = '5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'
 const publicKey = 'EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV'
 
+const iris = 'http://10.101.2.125:10888/iris'
+
 let baseInput = {
   '@context': [
     'https://w3id.org/identity/v1',
     'https://w3id.org/credentials/v1',
     'http://schema.org/'
   ],
-  'id': 'did:ASD',
-  'type': ['Person'],
-  'name': 'name',
-  'birthDate': 'NAME'
+  'type': ['Person']
+  // 'id': 'did:sampleDID',
+  // 'name': 'Raman Shalupau',
+  // 'birthDate': '06/11/1990'
 }
 
 app.use(cors())
 app.use(bodyParser.json())
+
 app.all('/sign', (req, res) => {
-  console.log(req.body)
   let input = _.defaults(req.body, baseInput)
-  console.log(input)
   jsig.sign(input, {
     algorithm: 'EcdsaKoblitzSignature2016',
     privateKeyWif: privateKeyWif,

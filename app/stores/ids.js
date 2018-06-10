@@ -1,10 +1,15 @@
 import { observable, action } from 'mobx'
 import { get, post, put, patch } from 'axios'
 import EOS from '../components/EOS'
+import pako from 'pako'
+import moment from 'moment'
 
 class Ids {
   @observable loading = false
-  @observable person = {}
+  @observable person = {
+    legalName: '',
+    dateOfBirth: moment().subtract(22, 'years')
+  }
   @observable ids = []
   @observable signedJSONLD = null
 
@@ -22,25 +27,26 @@ class Ids {
     this.person[name] = value
   }
 
-  @action handleLoadClaim = (e, { claim }) => {
-    console.log('handleLoadClaim', claim)
-    this.signedJSONLD = claim
-  }
-
-  @action handleDOBChange = (e, { name, value, checked }) => {
-    console.log('handleDOBChange', e)
-    // this.person[name] = value
+  @action newIdentity = () => {
+    this.person = {
+      legalName: '',
+      dateOfBirth: moment().subtract(22, 'years')
+    }
+    this.signedJSONLD = null
   }
 
   @action sign = () => {
     const that = this
-    const data = this.person
+    let data = this.person
     this.loading = true
     that.signedJSONLD = null
+    const did = this.ids.pop()
+    data.id = did.publicDidDocument.id
+
     post('http://localhost:3000/sign', data)
     .then(res => {
-      console.log(res)
-      that.signedJSONLD = res
+      console.log(res.data)
+      that.signedJSONLD = res.data
       that.loading = false
     })
 

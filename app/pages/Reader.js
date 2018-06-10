@@ -41,15 +41,14 @@ class Reader extends React.Component {
     const { qr } = this.state
     return (
       <Container {...{style: {marginTop: '5em'}}}>
+        <Header as='h1' content='🔍 Reader' />
+        <p>{this.state.qr}</p>
+        {this.state.fullLegalName}
+        <QRCode value={qr} size={256} />
         <input ref='scanner'
           onChange={this.scanner.bind(this)}
           onBlur={this.componentDidMount.bind(this)}
           {...{style:{opacity:0}}} />
-
-        <Header as='h1' content='🤓 Reader' />
-        <p>{this.state.qr}</p>
-        {this.state.fullLegalName}
-        <QRCode value={qr} size={256} />
       </Container>
     )
   }
