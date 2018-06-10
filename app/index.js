@@ -16,13 +16,17 @@ import Home from './pages/Home'
 import Reader from './pages/Reader'
 import Ids from './pages/Ids'
 
+import IdsStore from './stores/ids'
+
 ReactDOM.render((
-  <Router key={Math.random()} history={history}>
-    <div>
-      <Header />
-      <Route exact path='/' component={Home} />
-      <Route exact path='/reader' component={Reader} />
-      <Route exact path='/ids' component={Ids} />
-    </div>
-  </Router>
+  <Provider {...{IdsStore: IdsStore}}>
+    <Router key={Math.random()} history={history}>
+      <div>
+        <Header />
+        <Route exact path='/' component={Home} />
+        <Route exact path='/reader' component={Reader} />
+        <Route exact path='/ids' component={Ids} />
+      </div>
+    </Router>
+  </Provider>
 ), document.getElementById('app'))

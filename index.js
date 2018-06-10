@@ -15,7 +15,7 @@ let baseInput = {
     'https://w3id.org/credentials/v1',
     'http://schema.org/'
   ],
-  'id': 'ASD',
+  'id': 'did:ASD',
   'type': ['Person'],
   'name': 'name',
   'birthDate': 'NAME'
