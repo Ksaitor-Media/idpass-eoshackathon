@@ -11,6 +11,8 @@ import QRCode from 'qrcode.react'
 import pako from 'pako'
 import Axios from 'axios'
 
+jsigs.use('jsonld', jsonld);
+
 const genders = [{
   text: 'Male',
   value: 'male'
