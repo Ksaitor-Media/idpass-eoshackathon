@@ -4,8 +4,8 @@ import EOS from '../components/EOS'
 import pako from 'pako'
 import moment from 'moment'
 
-// const pyIp = 'http://0.0.0.0:10888/'
-const pyIp = 'http://10.101.2.125:10888/'
+const pyIp = 'http://0.0.0.0:10888/'
+// const pyIp = 'http://10.101.2.125:10888/'
 
 class Ids {
   @observable loading = false

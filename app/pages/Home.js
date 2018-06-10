@@ -95,7 +95,7 @@ class Home extends React.Component {
           </Grid.Row>
         </Grid>
         <Button color='green' content='Create temporary IDPASS' onClick={sign} loading={loading} />
-        <Button color='green' content='Create hardware IDPASS' onClick={hardwareIDPASS} />
+        {qr ?  <Button color='green' content='Create hardware IDPASS' onClick={hardwareIDPASS} /> : null}
         <br />
         <br />
         {qr ?  <QRCode value={qr} size={256} /> : null}
