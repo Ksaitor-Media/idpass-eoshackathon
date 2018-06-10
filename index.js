@@ -44,7 +44,10 @@ app.all('/sign', (req, res) => {
 })
 
 app.all('/verify', (req, res) => {
-  console.log(req.query)
+  let input = _.defaults(req.body, baseInput)
+
+  let signedDocument = input.signedDocument
+
   jsig.verify(signedDocument, {
     algorithm: 'EcdsaKoblitzSignature2016',
     publicKeyWif: publicKey,
@@ -57,7 +60,7 @@ app.all('/verify', (req, res) => {
     if (err) {
       return res.send('Signature verification error:' + err);
     }
-    return res.send('Signature is valid:', verified, verified.keyResults[0]);
+    return res.send(verified);
   });
 })
 
