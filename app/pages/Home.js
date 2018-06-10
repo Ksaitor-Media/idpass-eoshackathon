@@ -58,7 +58,7 @@ class Home extends React.Component {
 
     return (
       <Container {...{style: {marginTop: '5em'}}}>
-        <Header as='h1' content='🔑 Identity Generator' />
+        <Header as='h1' content='🤓 Identity Generator' />
         <Form>
           <Form.Group>
             <Form.Input label='Full Legal Name' name='legalName' onChange={handleChange} value={person.legalName} />
