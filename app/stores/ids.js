@@ -2,10 +2,13 @@ import { observable, action } from 'mobx'
 import { get, post, put, patch } from 'axios'
 import EOS from '../components/EOS'
 import pako from 'pako'
+import moment from 'moment'
 
 class Ids {
   @observable loading = false
-  @observable person = {}
+  @observable person = {
+    dateOfBirth: moment().subtract(22, 'years')
+  }
   @observable ids = []
   @observable signedJSONLD = null
 
@@ -24,7 +27,9 @@ class Ids {
   }
 
   @action newIdentity = () => {
-    this.person = {}
+    this.person = {
+      dateOfBirth: moment().subtract(22, 'years')
+    }
   }
 
   @action sign = () => {

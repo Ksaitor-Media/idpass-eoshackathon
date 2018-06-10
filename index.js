@@ -17,18 +17,17 @@ let baseInput = {
     'https://w3id.org/credentials/v1',
     'http://schema.org/'
   ],
-  'id': 'did:ASD',
-  'type': ['Person'],
-  'name': 'name',
-  'birthDate': 'NAME'
+  'type': ['Person']
+  // 'id': 'did:sampleDID',
+  // 'name': 'Raman Shalupau',
+  // 'birthDate': '06/11/1990'
 }
 
 app.use(cors())
 app.use(bodyParser.json())
+
 app.all('/sign', (req, res) => {
-  console.log(req.body)
   let input = _.defaults(req.body, baseInput)
-  console.log(input)
   jsig.sign(input, {
     algorithm: 'EcdsaKoblitzSignature2016',
     privateKeyWif: privateKeyWif,
@@ -44,8 +43,7 @@ app.all('/sign', (req, res) => {
 })
 
 app.all('/verify', (req, res) => {
-  console.log(req.query)
-  jsig.verify(signedDocument, {
+  jsig.verify(req.body, {
     algorithm: 'EcdsaKoblitzSignature2016',
     publicKeyWif: publicKey,
     testPublicKeyOwner: {

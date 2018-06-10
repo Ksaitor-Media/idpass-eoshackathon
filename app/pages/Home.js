@@ -49,7 +49,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { loading, handleChange, sign, signedJSONLD, newIdentity } = this.props.IdsStore;
+    const { person, loading, handleChange, sign, signedJSONLD, newIdentity } = this.props.IdsStore;
     let qr = false
     if (signedJSONLD) {
       console.log('signedJSONLD', signedJSONLD)
