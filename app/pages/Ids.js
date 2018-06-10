@@ -19,13 +19,11 @@ class Ids extends React.Component {
         <Header as='h1' content='🔑 Identities' />
         <Button
           color='green' content='Issue new ID'
-          onClick={this.generateId.bind(this)}
-          loading={loading}
-        />
+          onClick={this.generateId.bind(this)} />
         <Header as='h3' content={`${qty} keys`} />
         <ul>
         {ids.map(id => {
-          return <li>{id.publicDidDocument.id}</li>
+          return <li key={id.publicDidDocument.id}>{id.publicDidDocument.id}</li>
         })}
         </ul>
       </Container>

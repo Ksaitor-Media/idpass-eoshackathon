@@ -1,6 +1,7 @@
 import { observable, action } from 'mobx'
 import { get, post, put, patch } from 'axios'
 import EOS from '../components/EOS'
+import pako from 'pako'
 
 class Ids {
   @observable loading = false
@@ -22,9 +23,8 @@ class Ids {
     this.person[name] = value
   }
 
-  @action handleDOBChange = (e, { name, value, checked }) => {
-    console.log('handleDOBChange', e)
-    // this.person[name] = value
+  @action newIdentity = () => {
+    this.person = {}
   }
 
   @action sign = () => {
@@ -34,8 +34,8 @@ class Ids {
     that.signedJSONLD = null
     post('http://localhost:3000/sign', data)
     .then(res => {
-      console.log(res)
-      that.signedJSONLD = res
+      console.log(res.data)
+      that.signedJSONLD = res.data
       that.loading = false
     })
 
