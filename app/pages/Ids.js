@@ -22,9 +22,6 @@ class Ids extends React.Component {
           color='green' content='Issue new ID'
           onClick={this.generateId.bind(this)} />
         <Header as='h3' content={`${qty} keys`} />
-        <ul>
-
-        </ul>
         <Segment inverted>
           <List divided inverted relaxed size='massive'>
           {ids.map(id => {
