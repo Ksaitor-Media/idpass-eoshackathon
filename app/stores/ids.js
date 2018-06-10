@@ -6,12 +6,14 @@ import moment from 'moment'
 
 class Ids {
   @observable loading = false
+  @observable irisLoading = false
   @observable person = {
     legalName: '',
     dateOfBirth: moment().subtract(22, 'years')
   }
   @observable ids = []
   @observable signedJSONLD = null
+  @observable iris = null
 
   @action generateDID = () => {
     this.loading = true
@@ -50,6 +52,18 @@ class Ids {
       that.loading = false
     })
 
+  }
+
+  @action captireIris = () => {
+    console.log('captireIris')
+    const that = this
+    const iris = 'http://10.101.2.125:10888/capture_iris'
+    that.irisLoading = true
+    get(iris).then(res => {
+      console.log(res.data)
+      that.iris = res.data
+      that.irisLoading = false
+    })
   }
 
 

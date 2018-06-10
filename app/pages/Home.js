@@ -2,8 +2,8 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Container, Header, Divider } from 'semantic-ui-react'
-import { Input, Form, Button, Dropdown } from 'semantic-ui-react'
+import { Container, Header, Divider, Grid } from 'semantic-ui-react'
+import { Input, Form, Button, Dropdown, Image } from 'semantic-ui-react'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import EOS from '../components/EOS'
@@ -50,10 +50,11 @@ class Home extends React.Component {
 
   render() {
     const { person, loading, handleChange, sign, signedJSONLD, newIdentity } = this.props.IdsStore;
+    const { iris, captireIris, irisLoading } = this.props.IdsStore;
     let qr = false
     if (signedJSONLD) {
       console.log('signedJSONLD', signedJSONLD)
-      qr = this.encodeForQR(signedJSONLD)
+      qr = JSON.stringify(signedJSONLD)
     }
 
     return (
@@ -64,23 +65,35 @@ class Home extends React.Component {
         <Button link content='New Person' onClick={newIdentity} size='tiny' basic  color='green'/>
         <br />
         <br />
-        <Form>
-          <Form.Group>
-            <Form.Input label='Full Legal Name' name='legalName' onChange={handleChange} value={person.legalName} />
-            <Form.Input label='Short Name' name='shortName' onChange={handleChange}/>
-          </Form.Group>
-          <Form.Group>
-            <Form.Dropdown label='Gender' selection options={genders} name='gender' onChange={handleChange} />
-          </Form.Group>
-          <Form.Group>
-            <div className='field'>
-              <label>Date of Birth</label>
-              <DatePicker selected={this.state.date} name='dateOfBirth' onChange={this.handleDOBChange} />
-            </div>
-            {/*<Form.Input label='Age' name='age' onChange={handleChange}/>*/}
-          </Form.Group>
-        </Form>
-        <Button color='green' content='Issue' onClick={sign} loading={loading} />
+        <Grid columns={2}>
+          <Grid.Row>
+            <Grid.Column>
+              <Form>
+                <Form.Group>
+                  <Form.Input label='Full Legal Name' name='legalName' onChange={handleChange} value={person.legalName} />
+                  <Form.Input label='Short Name' name='shortName' onChange={handleChange}/>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Dropdown label='Gender' selection options={genders} name='gender' onChange={handleChange} />
+                </Form.Group>
+                <Form.Group>
+                  <div className='field'>
+                    <label>Date of Birth</label>
+                    <DatePicker selected={this.state.date} name='dateOfBirth' onChange={this.handleDOBChange} />
+                  </div>
+                  {/*<Form.Input label='Age' name='age' onChange={handleChange}/>*/}
+                </Form.Group>
+              </Form>
+            </Grid.Column>
+            <Grid.Column>
+              <Image rounded src={iris ? iris.image : 'https://react.semantic-ui.com/assets/images/wireframe/square-image.png'} />
+              <br />
+              <Button content='👁️ Get IRIS' onClick={captireIris} loading={irisLoading} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <Button color='green' content='Create temporary IDPASS' onClick={sign} loading={loading} />
+        <Button color='green' content='Create hardware IDPASS' onClick={sign} loading={loading} />
         <br />
         <br />
         {qr ?  <QRCode value={qr} size={256} /> : null}
