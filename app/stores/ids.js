@@ -1,5 +1,6 @@
 import { observable, action } from 'mobx'
 import { get, post, put, patch } from 'axios'
+import EOS from '../components/EOS'
 
 class Ids {
   @observable loading = false
@@ -7,7 +8,11 @@ class Ids {
 
   @action generateDID = () => {
     this.loading = true
-    this.loading = false
+    let ids = this.ids
+    EOS.provisionDidDocumentOnEOS().then((data) => {
+      ids.push(data)
+      this.loading = false
+    })
   }
 
   @action sign = () => {
@@ -15,4 +20,4 @@ class Ids {
   }
 }
 
-export default Ids
+export default new Ids()

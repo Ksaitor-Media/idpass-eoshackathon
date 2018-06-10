@@ -2,7 +2,6 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Link } from 'react-router-dom'
 import { Container, Header, Divider } from 'semantic-ui-react'
 import { Input, Form, Button, Dropdown } from 'semantic-ui-react'
 import DatePicker from 'react-datepicker'
@@ -49,6 +48,8 @@ const sampleData = {
 
 const stringData = JSON.stringify(sampleData)
 
+@inject('IdsStore')
+@observer
 class Home extends React.Component {
   constructor (props) {
     super(props)
@@ -60,7 +61,6 @@ class Home extends React.Component {
     this.handleNameChange =
     this.handleNameChange.bind(this);
     console.log(pako.deflate(stringData, {to: 'string'}).length)
-    EOS.provisionDidDocumentOnEOS().then(console.log)
   }
 
   handleChange (date) {
