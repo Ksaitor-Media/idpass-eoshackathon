@@ -21,18 +21,22 @@ class Ids extends React.Component {
         <Button
           color='green' content='Issue new ID'
           onClick={this.generateId.bind(this)} />
-        <Header as='h3' content={`${qty} keys`} />
-        <Segment inverted>
-          <List divided inverted relaxed size='massive'>
-          {ids.map(id => {
-            return <List.Item key={id.publicDidDocument.id}>
-              <List.Content>
-                {id.publicDidDocument.id}
-              </List.Content>
-            </List.Item>
-          })}
-          </List>
-        </Segment>
+        <br/>
+        <br/>
+        {ids.length ? <div>
+          <Header as='h3' content={`${qty} keys`} />
+          <Segment inverted>
+            <List divided inverted relaxed size='massive'>
+            {ids.map(id => {
+              return <List.Item key={id.publicDidDocument.id}>
+                <List.Content>
+                  {id.publicDidDocument.id}
+                </List.Content>
+              </List.Item>
+            })}
+            </List>
+          </Segment>
+        </div> : null}
       </Container>
     )
   }
