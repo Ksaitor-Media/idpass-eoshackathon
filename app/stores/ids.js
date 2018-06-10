@@ -22,6 +22,11 @@ class Ids {
     this.person[name] = value
   }
 
+  @action handleLoadClaim = (e, { claim }) => {
+    console.log('handleLoadClaim', claim)
+    this.signedJSONLD = claim
+  }
+
   @action handleDOBChange = (e, { name, value, checked }) => {
     console.log('handleDOBChange', e)
     // this.person[name] = value
@@ -36,6 +41,19 @@ class Ids {
     .then(res => {
       console.log(res)
       that.signedJSONLD = res
+      that.loading = false
+    })
+
+  }
+
+
+  @action verify = (data) => {
+    const that = this
+    this.loading = true
+    post('http://localhost:3000/verify', data)
+    .then(res => {
+      console.log(res)
+      that.valid = res
       that.loading = false
     })
 
