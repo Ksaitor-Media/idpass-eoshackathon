@@ -1,0 +1,8 @@
+
+VERSION="3.3.0"
+
+BUILD_DIR=$(dirname $0)
+mkdir -p $BUILD_DIR/bin
+CLASSPATH=.:$BUILD_DIR/sdk/Iddk2000-$VERSION.jar
+echo $CLASSPATH
+javac -cp $CLASSPATH $BUILD_DIR/com/iritech/demo/* -d $BUILD_DIR/bin
