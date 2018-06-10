@@ -1,4 +1,6 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS, cross_origin
+
 import json
 import subprocess
 import tempfile
@@ -7,9 +9,10 @@ import os
 import base64
 
 app = Flask(__name__)
+CORS(app)
 
 def add_cors(response):
-    response.headers['Access-Control-Allow-Origin'] = '*'
+    # response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
     response.headers['Pragma'] = 'no-cache'
     response.headers['Expires'] = 0
