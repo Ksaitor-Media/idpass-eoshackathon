@@ -4,8 +4,8 @@ import EOS from '../components/EOS'
 import pako from 'pako'
 import moment from 'moment'
 
-const pyIp = 'http://0.0.0.0:10888/'
-// const pyIp = 'http://10.101.2.125:10888/'
+// const pyIp = 'http://0.0.0.0:10888/'
+const pyIp = 'http://10.101.2.125:10888/'
 
 class Ids {
   @observable loading = false
@@ -73,12 +73,8 @@ class Ids {
 
   @action hardwareIDPASS = () => {
     const that = this
-    let data = this.person
-    const did = this.ids.pop()
-    data.id = did.publicDidDocument.id
-
+    const data = this.signedJSONLD
     post('http://10.101.2.125:10888/create_idpass', data)
-    // get('http://10.101.2.125:10888/create_idpass', {params: data})
     .then(res => {
       console.log(res.data)
     })
