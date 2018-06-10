@@ -58,7 +58,12 @@ class Home extends React.Component {
 
     return (
       <Container {...{style: {marginTop: '5em'}}}>
-        <Header as='h1' content='🤓 Identity Generator' />
+        <Header as='h1'>
+          🤓 Identity Generator
+        </Header>
+        <Button link content='New Person' onClick={newIdentity} size='tiny' basic  color='green'/>
+        <br />
+        <br />
         <Form>
           <Form.Group>
             <Form.Input label='Full Legal Name' name='legalName' onChange={handleChange} value={person.legalName} />
@@ -76,10 +81,10 @@ class Home extends React.Component {
           </Form.Group>
         </Form>
         <Button color='green' content='Issue' onClick={sign} loading={loading} />
-        <Button link content='New Id' onClick={newIdentity} />
         <br />
         <br />
         {qr ?  <QRCode value={qr} size={256} /> : null}
+        <p>{qr ?  signedJSONLD.id : null}</p>
       </Container>
     )
   }
